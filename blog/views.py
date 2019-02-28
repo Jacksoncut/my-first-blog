@@ -2,8 +2,11 @@ from django.shortcuts import render
 from django.utils import timezone
 from .models import Post
 from django.shortcuts import render, get_object_or_404
-from .forms import PostForm
 from django.shortcuts import redirect
+from django.shortcuts import HttpResponse
+from .forms import PostForm
+
+
 
 
 def post_list(request):
@@ -13,6 +16,14 @@ def post_list(request):
 def post_detail(request, pk):
     post = get_object_or_404(Post, pk=pk)
     return render(request, 'blog/post_detail.html', {'post': post})
+
+def roster(request):
+    return render(request, 'blog/RosterPage.html')
+    
+def attendence(request):
+    return render(request, 'blog/RosterPage.html')
+    
+    
     
 def post_new(request):
     if request.method == "POST":
@@ -40,6 +51,8 @@ def post_edit(request, pk):
     else:
         form = PostForm(instance=post)
     return render(request, 'blog/post_edit.html', {'form': form})
+
+
     
 
     
